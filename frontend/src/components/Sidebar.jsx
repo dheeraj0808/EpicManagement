@@ -1,8 +1,13 @@
 import { navigationItems } from "../data/navigation";
+import { useRole } from "../context/RoleContext";
 import { cn } from "../utils/classNames";
 import NavItem from "./NavItem";
 
 export default function Sidebar({ open, onClose }) {
+  const { role } = useRole();
+
+  const visibleNavigationItems = navigationItems.filter((item) => !item.requiredRole || item.requiredRole === role);
+
   return (
     <>
       <div
@@ -35,10 +40,15 @@ export default function Sidebar({ open, onClose }) {
         </div>
 
         <nav className="space-y-1.5">
-          {navigationItems.map((item) => (
+          {visibleNavigationItems.map((item) => (
             <NavItem key={item.path} item={item} onNavigate={onClose} />
           ))}
         </nav>
+
+        <div className="mt-5 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2">
+          <p className="text-[11px] font-semibold uppercase tracking-wide text-slate-500">Current Role</p>
+          <p className="mt-1 text-sm font-medium text-slate-800">{role}</p>
+        </div>
       </aside>
     </>
   );

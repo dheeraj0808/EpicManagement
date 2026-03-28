@@ -6,6 +6,7 @@ export const navigationItems = [
   { path: "/projects", label: "Projects", code: "PR" },
   { path: "/billing", label: "Billing", code: "BL" },
   { path: "/support", label: "Support", code: "SP" },
+  { path: "/user-management", label: "User Management", code: "UM", requiredRole: "Super Admin" },
   { path: "/settings", label: "Settings", code: "ST" },
 ];
 
