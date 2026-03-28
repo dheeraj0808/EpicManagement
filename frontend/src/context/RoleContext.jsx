@@ -21,7 +21,7 @@ const ROLE_PERMISSIONS = {
 const RoleContext = createContext(null);
 
 export function RoleProvider({ children }) {
-  const [role, setRole] = useState(ROLES.SUPER_ADMIN);
+  const [role, setRole] = useState(ROLES.ADMIN);
 
   const permissions = ROLE_PERMISSIONS[role] || ROLE_PERMISSIONS[ROLES.ADMIN];
 
