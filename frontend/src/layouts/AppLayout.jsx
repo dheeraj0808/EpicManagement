@@ -25,7 +25,7 @@ export default function AppLayout() {
       <div className="md:pl-72">
         <Header title={title} onMenuOpen={() => setSidebarOpen(true)} />
 
-        <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6">
+        <main key={location.pathname} className="mx-auto max-w-7xl animate-page-in px-4 py-6 sm:px-6">
           <Outlet />
         </main>
       </div>
