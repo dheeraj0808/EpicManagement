@@ -1,4 +1,3 @@
-import { formatLongDate } from "../utils/formatters";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useToast } from "../context/ToastContext";
@@ -29,8 +28,8 @@ export default function Header({ title, onMenuOpen }) {
           </div>
         </div>
 
-        <div className="flex flex-1 items-center justify-end gap-2 overflow-x-auto">
-          <div className="hidden items-center gap-2 sm:flex">
+        <div className="flex min-w-0 flex-1 items-center justify-end gap-2">
+          <div className="hidden min-w-0 items-center gap-2 md:flex">
             <label className="sr-only" htmlFor="global-search">
               Global Search
             </label>
@@ -39,7 +38,7 @@ export default function Header({ title, onMenuOpen }) {
               value={globalSearch}
               onChange={(event) => setGlobalSearch(event.target.value)}
               placeholder="Global search across tables..."
-              className="w-52 rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-100 lg:w-72"
+              className="min-w-0 w-40 rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-100 lg:w-56 xl:w-72"
             />
 
             <FiltersDropdown value={tableFilter} options={tableFilterOptions} onChange={setTableFilter} />
@@ -75,10 +74,6 @@ export default function Header({ title, onMenuOpen }) {
           <span className="hidden shrink-0 rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 lg:block">
             {user?.email}
           </span>
-
-          <p className="hidden shrink-0 rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-500 xl:block">
-            {formatLongDate(new Date())}
-          </p>
 
           <button
             type="button"
