@@ -1,11 +1,13 @@
 import { formatLongDate } from "../utils/formatters";
-import { useRole } from "../context/RoleContext";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import { useToast } from "../context/ToastContext";
 import { useUI } from "../context/UIContext";
 import FiltersDropdown from "./FiltersDropdown";
 
 export default function Header({ title, onMenuOpen }) {
-  const { role, setRole, availableRoles } = useRole();
+  const navigate = useNavigate();
+  const { user, logout } = useAuth();
   const { globalSearch, setGlobalSearch, tableFilter, setTableFilter, tableFilterOptions, isDarkMode, toggleThemeMode } =
     useUI();
   const { showToast } = useToast();
@@ -65,25 +67,30 @@ export default function Header({ title, onMenuOpen }) {
               Alerts
             </button>
 
-            <label className="hidden text-xs font-semibold uppercase tracking-wide text-slate-500 xl:block">Role</label>
+            <span className="hidden rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 xl:block">
+              {user?.role}
+            </span>
           </div>
 
-          <select
-            value={role}
-            onChange={(event) => setRole(event.target.value)}
-            className="rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-100 lg:text-sm"
-            aria-label="Select role"
-          >
-            {availableRoles.map((roleOption) => (
-              <option key={roleOption} value={roleOption}>
-                {roleOption}
-              </option>
-            ))}
-          </select>
+          <span className="hidden rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 lg:block">
+            {user?.email}
+          </span>
 
           <p className="hidden rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-500 xl:block">
             {formatLongDate(new Date())}
           </p>
+
+          <button
+            type="button"
+            onClick={() => {
+              logout();
+              showToast("Logged out successfully", "info");
+              navigate("/login", { replace: true });
+            }}
+            className="rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-50"
+          >
+            Logout
+          </button>
         </div>
       </div>
     </header>
