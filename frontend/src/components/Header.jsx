@@ -14,8 +14,8 @@ export default function Header({ title, onMenuOpen }) {
 
   return (
     <header className="sticky top-0 z-20 border-b border-slate-200 bg-white/80 backdrop-blur-md">
-      <div className="mx-auto flex min-h-16 max-w-7xl flex-col gap-3 px-4 py-3 sm:px-6 lg:flex-row lg:items-center lg:justify-between">
-        <div className="flex items-center gap-3">
+      <div className="mx-auto flex min-h-16 max-w-7xl items-center justify-between gap-3 px-4 py-2 sm:px-6">
+        <div className="flex shrink-0 items-center gap-3">
           <button
             type="button"
             onClick={onMenuOpen}
@@ -29,8 +29,8 @@ export default function Header({ title, onMenuOpen }) {
           </div>
         </div>
 
-        <div className="flex w-full flex-col gap-2 lg:w-auto lg:flex-row lg:items-center">
-          <div className="flex items-center gap-2">
+        <div className="flex flex-1 items-center justify-end gap-2 overflow-x-auto">
+          <div className="hidden items-center gap-2 sm:flex">
             <label className="sr-only" htmlFor="global-search">
               Global Search
             </label>
@@ -39,13 +39,13 @@ export default function Header({ title, onMenuOpen }) {
               value={globalSearch}
               onChange={(event) => setGlobalSearch(event.target.value)}
               placeholder="Global search across tables..."
-              className="w-full rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-100 lg:w-72"
+              className="w-52 rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-100 lg:w-72"
             />
 
             <FiltersDropdown value={tableFilter} options={tableFilterOptions} onChange={setTableFilter} />
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex shrink-0 items-center gap-2">
             <button
               type="button"
               onClick={() => {
@@ -72,11 +72,11 @@ export default function Header({ title, onMenuOpen }) {
             </span>
           </div>
 
-          <span className="hidden rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 lg:block">
+          <span className="hidden shrink-0 rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 lg:block">
             {user?.email}
           </span>
 
-          <p className="hidden rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-500 xl:block">
+          <p className="hidden shrink-0 rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-500 xl:block">
             {formatLongDate(new Date())}
           </p>
 
@@ -87,7 +87,7 @@ export default function Header({ title, onMenuOpen }) {
               showToast("Logged out successfully", "info");
               navigate("/login", { replace: true });
             }}
-            className="rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-50"
+            className="shrink-0 rounded-xl border border-rose-600 bg-rose-600 px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-rose-700"
           >
             Logout
           </button>
