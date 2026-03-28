@@ -1,0 +1,283 @@
+{
+  "clients": [
+    {
+      "id": "client-1001",
+      "name": "Northwind Media",
+      "email": "hello@northwindmedia.com",
+      "phone": "+1-415-555-0190",
+      "companyName": "Northwind Media",
+      "domainIds": ["domain-001", "domain-002"],
+      "credentialIds": ["cred-001", "cred-002"],
+      "projectIds": ["project-001", "project-002"]
+    },
+    {
+      "id": "client-1002",
+      "name": "Blue Peak",
+      "email": "contact@bluepeak.app",
+      "phone": "+1-332-555-0182",
+      "companyName": "Blue Peak",
+      "domainIds": ["domain-003", "domain-004"],
+      "credentialIds": ["cred-003", "cred-004"],
+      "projectIds": ["project-003", "project-004"]
+    },
+    {
+      "id": "client-1003",
+      "name": "Evergreen Labs",
+      "email": "ops@evergreenlabs.io",
+      "phone": "+1-206-555-0135",
+      "companyName": "Evergreen Labs",
+      "domainIds": ["domain-005", "domain-006"],
+      "credentialIds": ["cred-005", "cred-006"],
+      "projectIds": ["project-005", "project-006"]
+    },
+    {
+      "id": "client-1004",
+      "name": "Westview Health",
+      "email": "admin@westviewhealth.io",
+      "phone": "+1-617-555-0101",
+      "companyName": "Westview Health",
+      "domainIds": ["domain-007", "domain-008"],
+      "credentialIds": ["cred-007", "cred-008"],
+      "projectIds": ["project-007", "project-008"]
+    }
+  ],
+  "domains": [
+    {
+      "id": "domain-001",
+      "clientId": "client-1001",
+      "domainName": "northwindmedia.com",
+      "registrar": "Namecheap",
+      "purchaseDate": "2021-11-04",
+      "expiryDate": "2026-11-04",
+      "status": "Active"
+    },
+    {
+      "id": "domain-002",
+      "clientId": "client-1001",
+      "domainName": "northwindstudio.io",
+      "registrar": "GoDaddy",
+      "purchaseDate": "2022-04-18",
+      "expiryDate": "2026-04-18",
+      "status": "Expiring"
+    },
+    {
+      "id": "domain-003",
+      "clientId": "client-1002",
+      "domainName": "bluepeak.app",
+      "registrar": "Cloudflare",
+      "purchaseDate": "2023-04-07",
+      "expiryDate": "2026-04-07",
+      "status": "Expiring"
+    },
+    {
+      "id": "domain-004",
+      "clientId": "client-1002",
+      "domainName": "bluepeaklabs.com",
+      "registrar": "Namecheap",
+      "purchaseDate": "2023-01-14",
+      "expiryDate": "2027-01-14",
+      "status": "Active"
+    },
+    {
+      "id": "domain-005",
+      "clientId": "client-1003",
+      "domainName": "evergreenlabs.io",
+      "registrar": "GoDaddy",
+      "purchaseDate": "2020-01-22",
+      "expiryDate": "2027-01-22",
+      "status": "Active"
+    },
+    {
+      "id": "domain-006",
+      "clientId": "client-1003",
+      "domainName": "evergreenlabs.ai",
+      "registrar": "Namecheap",
+      "purchaseDate": "2024-02-11",
+      "expiryDate": "2026-06-05",
+      "status": "Expiring"
+    },
+    {
+      "id": "domain-007",
+      "clientId": "client-1004",
+      "domainName": "westviewhealth.io",
+      "registrar": "Google Domains",
+      "purchaseDate": "2021-04-11",
+      "expiryDate": "2026-04-11",
+      "status": "Expiring"
+    },
+    {
+      "id": "domain-008",
+      "clientId": "client-1004",
+      "domainName": "westviewcare.org",
+      "registrar": "GoDaddy",
+      "purchaseDate": "2021-09-01",
+      "expiryDate": "2026-09-01",
+      "status": "Active"
+    }
+  ],
+  "credentials": [
+    {
+      "id": "cred-001",
+      "clientId": "client-1001",
+      "platform": "WordPress",
+      "websiteUrl": "https://northwindmedia.com/wp-admin",
+      "username": "admin_nwm",
+      "password": "NwM!Secure#2026"
+    },
+    {
+      "id": "cred-002",
+      "clientId": "client-1001",
+      "platform": "Hosting",
+      "websiteUrl": "https://dash.cloudflare.com",
+      "username": "ops@northwindmedia.com",
+      "password": "CF@Northwind!84"
+    },
+    {
+      "id": "cred-003",
+      "clientId": "client-1002",
+      "platform": "Shopify",
+      "websiteUrl": "https://bluepeak-shop.myshopify.com/admin",
+      "username": "sophia.bennett",
+      "password": "Sh0p!fyBluePeak"
+    },
+    {
+      "id": "cred-004",
+      "clientId": "client-1002",
+      "platform": "App",
+      "websiteUrl": "https://dashboard.stripe.com",
+      "username": "finance@bluepeak.app",
+      "password": "Str!pe_BIueP#26"
+    },
+    {
+      "id": "cred-005",
+      "clientId": "client-1003",
+      "platform": "Hosting",
+      "websiteUrl": "https://console.aws.amazon.com",
+      "username": "cloud-admin",
+      "password": "AwS$EverGreen26"
+    },
+    {
+      "id": "cred-006",
+      "clientId": "client-1003",
+      "platform": "App",
+      "websiteUrl": "https://github.com/organizations/evergreenlabs/settings",
+      "username": "daniel.brooks",
+      "password": "GitHub#Evergreen!"
+    },
+    {
+      "id": "cred-007",
+      "clientId": "client-1004",
+      "platform": "WordPress",
+      "websiteUrl": "https://westviewhealth.io/wp-admin",
+      "username": "wc_admin",
+      "password": "WestView@WP!2026"
+    },
+    {
+      "id": "cred-008",
+      "clientId": "client-1004",
+      "platform": "Hosting",
+      "websiteUrl": "https://portal.azure.com",
+      "username": "infra.team@westviewhealth.io",
+      "password": "AzUr3!Westview%"
+    }
+  ],
+  "projects": [
+    {
+      "id": "project-001",
+      "clientId": "client-1001",
+      "projectName": "Northwind Marketing Site Revamp",
+      "type": "Website",
+      "status": "In Progress",
+      "deadline": "2026-04-30"
+    },
+    {
+      "id": "project-002",
+      "clientId": "client-1001",
+      "projectName": "Northwind Performance Maintenance",
+      "type": "Maintenance",
+      "status": "Pending",
+      "deadline": "2026-05-12"
+    },
+    {
+      "id": "project-003",
+      "clientId": "client-1002",
+      "projectName": "Blue Peak Checkout App",
+      "type": "App",
+      "status": "In Progress",
+      "deadline": "2026-05-05"
+    },
+    {
+      "id": "project-004",
+      "clientId": "client-1002",
+      "projectName": "Blue Peak Shopify Theme Upgrade",
+      "type": "Shopify",
+      "status": "Pending",
+      "deadline": "2026-04-25"
+    },
+    {
+      "id": "project-005",
+      "clientId": "client-1003",
+      "projectName": "Evergreen Labs Docs Website",
+      "type": "Website",
+      "status": "Completed",
+      "deadline": "2026-03-22"
+    },
+    {
+      "id": "project-006",
+      "clientId": "client-1003",
+      "projectName": "Evergreen API Stability Program",
+      "type": "Maintenance",
+      "status": "In Progress",
+      "deadline": "2026-05-20"
+    },
+    {
+      "id": "project-007",
+      "clientId": "client-1004",
+      "projectName": "Westview Patient Portal",
+      "type": "App",
+      "status": "Pending",
+      "deadline": "2026-06-01"
+    },
+    {
+      "id": "project-008",
+      "clientId": "client-1004",
+      "projectName": "Westview Website Compliance Sweep",
+      "type": "Maintenance",
+      "status": "Completed",
+      "deadline": "2026-03-18"
+    }
+  ],
+  "users": [
+    {
+      "id": "user-001",
+      "name": "Priya Sharma",
+      "email": "priya@epicmanagement.com",
+      "role": "Super Admin",
+      "assignedClientIds": ["client-1001", "client-1002", "client-1003", "client-1004"]
+    },
+    {
+      "id": "user-002",
+      "name": "Maya Torres",
+      "email": "maya@epicmanagement.com",
+      "role": "Admin",
+      "assignedClientIds": ["client-1001", "client-1004"],
+      "assignedProjectIds": ["project-001", "project-007"]
+    },
+    {
+      "id": "user-003",
+      "name": "Lena Webb",
+      "email": "lena@epicmanagement.com",
+      "role": "Admin",
+      "assignedClientIds": ["client-1001", "client-1002"],
+      "assignedProjectIds": ["project-002", "project-004"]
+    },
+    {
+      "id": "user-004",
+      "name": "Rohan Patel",
+      "email": "rohan@epicmanagement.com",
+      "role": "Admin",
+      "assignedClientIds": ["client-1002", "client-1003"],
+      "assignedProjectIds": ["project-003", "project-006"]
+    }
+  ]
+}
