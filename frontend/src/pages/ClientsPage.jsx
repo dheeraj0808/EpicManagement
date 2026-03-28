@@ -5,11 +5,13 @@ import DataTable from "../components/DataTable";
 import ClientFormModal from "../components/clients/ClientFormModal";
 import DeleteClientModal from "../components/clients/DeleteClientModal";
 import { useClients } from "../context/ClientsContext";
+import { useRole } from "../context/RoleContext";
 
 const ALL_COMPANIES = "all";
 
 export default function ClientsPage() {
   const { clients, addClient, updateClient, deleteClient } = useClients();
+  const { canDeleteCriticalData, role } = useRole();
   const [searchTerm, setSearchTerm] = useState("");
   const [companyFilter, setCompanyFilter] = useState(ALL_COMPANIES);
   const [formOpen, setFormOpen] = useState(false);
@@ -68,7 +70,7 @@ export default function ClientsPage() {
   };
 
   const confirmDeleteClient = () => {
-    if (!clientToDelete) {
+    if (!canDeleteCriticalData || !clientToDelete) {
       return;
     }
 
@@ -106,13 +108,17 @@ export default function ClientsPage() {
           >
             Edit
           </button>
-          <button
-            type="button"
-            onClick={() => setClientToDelete(row)}
-            className="rounded-lg border border-rose-200 px-2.5 py-1 text-xs font-medium text-rose-700 hover:bg-rose-50"
-          >
-            Delete
-          </button>
+          {canDeleteCriticalData ? (
+            <button
+              type="button"
+              onClick={() => setClientToDelete(row)}
+              className="rounded-lg border border-rose-200 px-2.5 py-1 text-xs font-medium text-rose-700 hover:bg-rose-50"
+            >
+              Delete
+            </button>
+          ) : (
+            <span className="rounded-lg border border-slate-200 px-2.5 py-1 text-xs font-medium text-slate-400">Restricted</span>
+          )}
         </div>
       ),
     },
@@ -177,6 +183,11 @@ export default function ClientsPage() {
         title="Client List"
         subtitle={`${filteredClients.length} record${filteredClients.length === 1 ? "" : "s"} shown`}
       >
+        {!canDeleteCriticalData ? (
+          <p className="mb-3 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-xs text-amber-700">
+            {role} access: deleting critical client records is disabled.
+          </p>
+        ) : null}
         <DataTable columns={tableColumns} rows={filteredClients} />
       </ContentCard>
 
@@ -188,12 +199,14 @@ export default function ClientsPage() {
         onSubmit={handleFormSubmit}
       />
 
-      <DeleteClientModal
-        open={Boolean(clientToDelete)}
-        clientName={clientToDelete?.name}
-        onCancel={() => setClientToDelete(null)}
-        onConfirm={confirmDeleteClient}
-      />
+      {canDeleteCriticalData ? (
+        <DeleteClientModal
+          open={Boolean(clientToDelete)}
+          clientName={clientToDelete?.name}
+          onCancel={() => setClientToDelete(null)}
+          onConfirm={confirmDeleteClient}
+        />
+      ) : null}
     </div>
   );
 }
