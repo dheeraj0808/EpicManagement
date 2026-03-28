@@ -6,12 +6,14 @@ import ClientFormModal from "../components/clients/ClientFormModal";
 import DeleteClientModal from "../components/clients/DeleteClientModal";
 import { useClients } from "../context/ClientsContext";
 import { useRole } from "../context/RoleContext";
+import { useToast } from "../context/ToastContext";
 
 const ALL_COMPANIES = "all";
 
 export default function ClientsPage() {
   const { clients, addClient, updateClient, deleteClient } = useClients();
   const { canDeleteCriticalData, role } = useRole();
+  const { showToast } = useToast();
   const [searchTerm, setSearchTerm] = useState("");
   const [companyFilter, setCompanyFilter] = useState(ALL_COMPANIES);
   const [formOpen, setFormOpen] = useState(false);
@@ -62,8 +64,10 @@ export default function ClientsPage() {
   const handleFormSubmit = (clientPayload) => {
     if (formMode === "edit" && selectedClient) {
       updateClient(selectedClient.id, clientPayload);
+      showToast(`Updated ${clientPayload.name}`, "success");
     } else {
       addClient(clientPayload);
+      showToast(`Added ${clientPayload.name}`, "success");
     }
 
     closeClientFormModal();
@@ -71,10 +75,12 @@ export default function ClientsPage() {
 
   const confirmDeleteClient = () => {
     if (!canDeleteCriticalData || !clientToDelete) {
+      showToast("Delete action is restricted for this role", "info");
       return;
     }
 
     deleteClient(clientToDelete.id);
+    showToast(`Deleted ${clientToDelete.name}`, "success");
     setClientToDelete(null);
   };
 

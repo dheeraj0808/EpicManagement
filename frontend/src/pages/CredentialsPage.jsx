@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import ContentCard from "../components/ContentCard";
 import DataTable from "../components/DataTable";
 import { useClients } from "../context/ClientsContext";
+import { useToast } from "../context/ToastContext";
 import { credentialRecords } from "../data/credentials";
 import { cn } from "../utils/classNames";
 
@@ -46,6 +47,7 @@ async function copyTextToClipboard(text) {
 
 export default function CredentialsPage() {
   const { getClientById } = useClients();
+  const { showToast } = useToast();
   const [searchTerm, setSearchTerm] = useState("");
   const [platformFilter, setPlatformFilter] = useState(ALL_PLATFORMS);
   const [visiblePasswords, setVisiblePasswords] = useState({});
@@ -114,12 +116,14 @@ export default function CredentialsPage() {
     try {
       await copyTextToClipboard(password);
       setCopiedCredentialId(credentialId);
+      showToast("Password copied to clipboard", "success");
 
       window.setTimeout(() => {
         setCopiedCredentialId((current) => (current === credentialId ? null : current));
       }, 1300);
     } catch {
       setCopiedCredentialId(null);
+      showToast("Unable to copy password", "error");
     }
   };
 

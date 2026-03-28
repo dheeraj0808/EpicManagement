@@ -4,6 +4,7 @@ import DataTable from "../components/DataTable";
 import DeleteUserModal from "../components/users/DeleteUserModal";
 import UserFormModal from "../components/users/UserFormModal";
 import { ROLES, useRole } from "../context/RoleContext";
+import { useToast } from "../context/ToastContext";
 import { initialUsers } from "../data/users";
 import { cn } from "../utils/classNames";
 
@@ -15,6 +16,7 @@ function roleTone(role) {
 
 export default function UserManagementPage() {
   const { canManageUsers } = useRole();
+  const { showToast } = useToast();
   const [users, setUsers] = useState(initialUsers);
   const [searchTerm, setSearchTerm] = useState("");
   const [roleFilter, setRoleFilter] = useState(ALL_ROLES);
@@ -60,6 +62,7 @@ export default function UserManagementPage() {
       setUsers((previousUsers) =>
         previousUsers.map((user) => (user.id === selectedUser.id ? { ...user, ...userPayload } : user)),
       );
+      showToast(`Updated ${userPayload.name}`, "success");
     } else {
       setUsers((previousUsers) => [
         ...previousUsers,
@@ -68,6 +71,7 @@ export default function UserManagementPage() {
           ...userPayload,
         },
       ]);
+      showToast(`Added ${userPayload.name}`, "success");
     }
 
     closeUserFormModal();
@@ -79,6 +83,7 @@ export default function UserManagementPage() {
     }
 
     setUsers((previousUsers) => previousUsers.filter((user) => user.id !== userToDelete.id));
+    showToast(`Deleted ${userToDelete.name}`, "success");
     setUserToDelete(null);
   };
 
