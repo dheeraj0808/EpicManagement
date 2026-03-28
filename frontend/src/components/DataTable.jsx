@@ -1,4 +1,4 @@
-export default function DataTable({ columns, rows }) {
+export default function DataTable({ columns, rows, rowClassName }) {
   return (
     <div className="overflow-x-auto">
       <table className="min-w-full divide-y divide-slate-200">
@@ -24,7 +24,15 @@ export default function DataTable({ columns, rows }) {
             </tr>
           ) : (
             rows.map((row) => (
-              <tr key={row.id} className="hover:bg-slate-50/80">
+              <tr
+                key={row.id}
+                className={[
+                  "hover:bg-slate-50/80",
+                  typeof rowClassName === "function" ? rowClassName(row) : "",
+                ]
+                  .filter(Boolean)
+                  .join(" ")}
+              >
                 {columns.map((column) => (
                   <td key={`${row.id}-${column.key}`} className="whitespace-nowrap px-3 py-3 text-sm text-slate-700">
                     {column.render ? column.render(row[column.key], row) : row[column.key]}

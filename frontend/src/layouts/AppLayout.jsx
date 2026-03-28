@@ -12,7 +12,11 @@ export default function AppLayout() {
     setSidebarOpen(false);
   }, [location.pathname]);
 
-  const title = pageTitleByPath[location.pathname] || "Dashboard";
+  let title = pageTitleByPath[location.pathname] || "Dashboard";
+
+  if (location.pathname.startsWith("/clients/")) {
+    title = "Client Details";
+  }
 
   return (
     <div className="min-h-screen">
